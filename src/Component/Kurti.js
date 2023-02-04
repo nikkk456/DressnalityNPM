@@ -13,7 +13,7 @@ const Kurti = () => {
                                 <div className="card-header bg-transparent border-dark text-center"><img className=" img-fluid " src="./Image/kurti5.png" alt="ek top hai yha pe" style={{width: "38%"}} /></div>
                                 <div className="card-body text-success">
                                     <h5 className="card-title">DressNality</h5>
-                                    <p className="card-text">Pink chikan kaari kurti <br />SIZE XL L M S <br />&#8377; 1000</p>
+                                    <p className="card-text">Pink chikankaari kurti <br />SIZE XL L M S <br />&#8377; 1000</p>
                                 </div>
                                 <div className="card-footer bg-transparent border-success">Customisable</div>
                             </div>
@@ -25,7 +25,7 @@ const Kurti = () => {
                                 <div className="card-header bg-transparent border-dark text-center"><img className=" img-fluid " src="./Image/kurti2.jpeg" alt="ek top hai yha pe" style={{width: "50%"}} /></div>
                                 <div className="card-body text-success">
                                     <h5 className="card-title">DressNality</h5>
-                                    <p className="card-text">classNameic Sea Green Top <br />SIZE XL L M S <br />&#8377; 700</p>
+                                    <p className="card-text"> Sea Green Top <br />SIZE XL L M S <br />&#8377; 700</p>
                                 </div>
                                 <div className="card-footer bg-transparent border-success">Customisable</div>
                             </div>
@@ -37,7 +37,7 @@ const Kurti = () => {
                                 <div className="card-header bg-transparent border-dark text-center"><img className=" img-fluid " src="./Image/kurti2.jpeg" alt="ek top hai yha pe" style={{width: "50%" }}/></div>
                                 <div className="card-body text-success">
                                     <h5 className="card-title">DressNality</h5>
-                                    <p className="card-text">classNameic Sea Green Top <br />SIZE XL L M S <br />&#8377; 850</p>
+                                    <p className="card-text"> Sea Green Top <br />SIZE XL L M S <br />&#8377; 850</p>
                                 </div>
                                 <div className="card-footer bg-transparent border-success">Customisable</div>
                             </div>
@@ -49,7 +49,7 @@ const Kurti = () => {
                                 <div className="card-header bg-transparent border-dark text-center"><img className=" img-fluid " src="./Image/kurti2.jpeg" alt="ek top hai yha pe" style={{width: "50%"}} /></div>
                                 <div className="card-body text-success">
                                     <h5 className="card-title">DressNality</h5>
-                                    <p className="card-text">classNameic Sea Green Top <br />SIZE XL L M S <br />&#8377; 670</p>
+                                    <p className="card-text"> Sea Green Top <br />SIZE XL L M S <br />&#8377; 670</p>
                                 </div>
                                 <div className="card-footer bg-transparent border-success">Customisable</div>
                             </div>

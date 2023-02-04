@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -36,7 +37,7 @@ const Footer = () => {
                 </div>
                 <div className="card-body text-dark">
                   <h6 className=" text-secondary text-center">Contact Us </h6>
-                  <p className="card-text text-center">Request@Dressnality.com (Respond will be within 3 hours)</p>
+                  <p className="card-text text-center">Request@Dressnality.com</p>
                 </div>
               </div>
             </div>
@@ -49,17 +50,17 @@ const Footer = () => {
             <div className="col-4">
               <h5>Company</h5>
               <ul className="nav flex-column">
-                <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">About Us</a></li>
-                <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Store Location</a></li>
-                <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Team</a></li>
-                <li className="nav-item mb-2"><a href="/" className="nav-link p-0 text-muted">Home</a></li>
+                <li className="nav-item mb-2"><Link to="#" className="nav-link p-0 text-muted">About Us</Link></li>
+                <li className="nav-item mb-2"><Link to="/Contact" className="nav-link p-0 text-muted">Store Location</Link></li>
+                <li className="nav-item mb-2"><Link to="#" className="nav-link p-0 text-muted">Team</Link></li>
+                <li className="nav-item mb-2"><Link to="/" className="nav-link p-0 text-muted">Home</Link></li>
               </ul>
             </div>
 
             <div className="col-4">
               <h5>Help</h5>
               <ul className="nav flex-column">
-                <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Contact Us</a></li>
+                <li className="nav-item mb-2"><a href="/Contact" className="nav-link p-0 text-muted">Contact Us</a></li>
                 <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">FAQs</a></li>
                 <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted" data-bs-toggle="modal"
                   data-bs-target="#termsModal">Terms and Condition</a></li>

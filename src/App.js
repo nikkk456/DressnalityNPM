@@ -8,8 +8,10 @@ import Blog1 from './Component/Blog1';
 import Blog from './Component/Blog';
 import Blog3 from './Component/Blog3';
 import Blog2 from './Component/Blog2';
+import SingleProduct from './Component/SingleProduct';
 import Error from './Error';
 import ProductInsert from './Component/ProductInsert';
+import Contact from './Component/Contact';
 
 function App() {
   return (
@@ -23,10 +25,12 @@ function App() {
         <Route exact path='/Blog2' element={<Blog2/>} />
         <Route exact path='/Blog3' element={<Blog3/>} />
         <Route exact path='/Blog' element={<Blog/>} />
+        <Route exact path='/SingleProduct/:id' element={<SingleProduct/>} />
         <Route exact path='*' element={<Error/>} />
+        <Route exact path='/Contact' element={<Contact/>} />
         <Route exact path='/ProductInsert' element={<ProductInsert/>} />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       
 
     </>

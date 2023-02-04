@@ -15,10 +15,14 @@ code {
   width: 18rem;
   border: none;
 }
+.size-button{
+  width:8%;
+  border-radius:30px;
+  border: none;
 
+}
 .scroll{
   overflow-x: auto;
-
 }
 .scroll::-webkit-scrollbar{
   display: none;

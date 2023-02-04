@@ -1,11 +1,10 @@
 import React, { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { AppContext, useProductContext } from '../Context/Productcontext'
-import Featured from './Featured'
+import { FormatNumber } from './FormatNUmber'
 
 const Home = () => {
-  const {isLoading, featuredproducts} = useContext(AppContext);
-  console.log(featuredproducts);
+  const { isLoading, featuredproducts } = useContext(AppContext);
 
   return (
     <div>
@@ -50,51 +49,56 @@ const Home = () => {
       <div id="section">
         <img src='./Image/banner4.jpg' style={{ width: "100%" }} className="img-fluid"></img>
       </div>
-      {isLoading?<div>..........Loading</div>:<div className='d-flex'>
-      {featuredproducts.map((animal, i) => (<>
-        <div className="card shadow mb-3 mx-3" style={{width: "20%"}}>
-                                <div className="card-header bg-transparent border-dark text-center"><img className=" img-fluid " src={animal[1].imageUrl[0]} alt="product" style={{width: "38%"}} /></div>
-                                <div className="card-body text-success">
-                                    <h5 className="card-title">{animal[1].title}</h5>
-                                    <h6 className="card-title">{animal[1].price}</h6>
-                                    <p className="card-text">Item Remaining{animal[1].quantity}</p>
-                                </div>
-                                <div className="card-footer bg-transparent border-success">Customisable</div>
-                            </div>
-                        </>))}
-        </div>}
+      {isLoading ? <div>..........Loading</div> : <div style={{backgroundColor: "#d5d4d4"}} className="my-3">
+        <div className='container d-flex scroll' style={{alignItems: "center"}}>
+          {featuredproducts.map((animal, i) => (<>
+            <NavLink to={`/SingleProduct/${animal[1].title}`} key={i} style={{ width: "50%" }} className="mx-3">
+              <div className="card shadow mb-3 mx-3" style={{ width: "100%" }}>
+                <div className="card-header bg-transparent border-dark text-center"><img className=" img-fluid " src={animal[1].imageUrl[0]} alt="product" style={{ width: "100%" }} /></div>
+                <div className="card-body text-success">
+                  <h5 className="card-title">{animal[1].title}</h5>
+                  <h6 className="card-title card-text">{<FormatNumber price={animal[1].price} />}</h6>
+                  <p className="card-text">Item Remaining{animal[1].quantity}</p>
+                </div>
+                <div className="card-footer card-text bg-transparent border-success">Customisable</div>
+              </div>
+            </NavLink>
+          </>))}
+        </div>
+
+      </div>}
       <div id="banner2">
         <img src="./Image/banner2.png" alt="" style={{ width: "100%" }} className="img-fluid" />
       </div>
       <div className='container text-center my-2'>
-        <h2 style={{fontFamily: "'Cinzel', 'serif'"}}>HOW TO CRAFT YOUR DRESS</h2>
+        <h2 style={{ fontFamily: "'Cinzel', 'serif'" }}>HOW TO CRAFT YOUR DRESS</h2>
       </div>
       <hr />
       <div className='container text-center'>
         <div className='row d-flex '>
           <div className='col my-2 col-md-4 col-6'>
-          <div className="card card-style">
-            <img src="./Image/fabric.png" className="card-img-top container img-fluid" style={{width: "69%"}}alt="..." />
-            <div className="card-body">
-              <p className="card-text" >Choose from over 20 different <br /> Fabrics and color. You can choose <br /> different fabric for all design</p>
+            <div className="card card-style">
+              <img src="./Image/fabric.png" className="card-img-top container img-fluid" style={{ width: "69%" }} alt="..." />
+              <div className="card-body">
+                <p className="card-text" >Choose from over 20 different <br /> Fabrics and color. You can choose <br /> different fabric for all design</p>
+              </div>
             </div>
-          </div>
           </div>
           <div className='col my-2 col-md-4 col-6'>
-          <div className="card card-style">
-            <img src="./Image/dress.png" className="card-img-top container img-fluid" style={{width: "50%"}} alt="..." />
-            <div className="card-body">
-              <p className="card-text">Choose your dress style and length <br/> then personalise them <br/> such as collar neckline sleeves etc.</p>
+            <div className="card card-style">
+              <img src="./Image/dress.png" className="card-img-top container img-fluid" style={{ width: "50%" }} alt="..." />
+              <div className="card-body">
+                <p className="card-text">Choose your dress style and length <br /> then personalise them <br /> such as collar neckline sleeves etc.</p>
+              </div>
             </div>
-          </div>
           </div>
           <div className='col my-2 col-md-4 col-6'>
-          <div className="card card-style">
-            <img src="./Image/measuring.jpg" className="card-img-top container img-fluid"  style={{width: "60%"}}alt="..."/>
-            <div className="card-body">
-            <p>Taking measurement is easy <br/>give us your measurement and <br/> you will have dress that really fits you</p>
+            <div className="card card-style">
+              <img src="./Image/measuring.jpg" className="card-img-top container img-fluid" style={{ width: "60%" }} alt="..." />
+              <div className="card-body">
+                <p>Taking measurement is easy <br />give us your measurement and <br /> you will have dress that really fits you</p>
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </div>

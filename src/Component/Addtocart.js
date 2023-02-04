@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Customise = () => {
+const Addtocart = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const Customise = () => {
   )
 }
 
-export default Customise
+export default Addtocart
