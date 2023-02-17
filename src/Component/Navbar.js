@@ -17,6 +17,7 @@ const Navbar = () => {
                   Clothing
                 </Link>
                 <ul className="dropdown-menu">
+                  <li><Link className="dropdown-item" to="/Products">All</Link></li>
                   <li><Link className="dropdown-item" to="/Kurti">Kurti</Link></li>
                   <li><Link className="dropdown-item" to="#">Tops</Link></li>
                   <li><Link className="dropdown-item" to="#">Dress</Link></li>

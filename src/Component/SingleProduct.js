@@ -46,6 +46,7 @@ const SingleProduct = () => {
                 <strong><h4>Can Be Customised According To You</h4></strong>
               </div>
             </div> : ""}
+            
             <div className='row container col-md-10'>
               {description}
             </div>

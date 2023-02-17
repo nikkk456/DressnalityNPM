@@ -12,6 +12,7 @@ import SingleProduct from './Component/SingleProduct';
 import Error from './Error';
 import ProductInsert from './Component/ProductInsert';
 import Contact from './Component/Contact';
+import All from './Component/All';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route exact path='/SingleProduct/:id' element={<SingleProduct/>} />
         <Route exact path='*' element={<Error/>} />
         <Route exact path='/Contact' element={<Contact/>} />
+        <Route exact path='/Products' element={<All/>} />
         <Route exact path='/ProductInsert' element={<ProductInsert/>} />
         </Routes>
         <Footer />

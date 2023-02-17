@@ -6,14 +6,17 @@ import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter } from 'react-router-dom';
 import { AppProvider } from './Context/Productcontext';
+import { FeatureProvider } from './Context/Featuredcontext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
   <AppProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <FeatureProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </FeatureProvider>
   </AppProvider>
 
 );

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 
 const Kurti = () => {
+    
     return (
         <div>
             <img src="./Image/chikan banner.jpg" alt="banner tha yha pr" style={{width: "100%", marginBottom: "2%"}}></img>
