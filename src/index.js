@@ -7,15 +7,21 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { AppProvider } from './Context/Productcontext';
 import { FeatureProvider } from './Context/Featuredcontext';
+import { CardProvider } from './Context/Card_context';
+import { BannerProvider } from './Context/Bannercontext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
   <AppProvider>
     <FeatureProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <CardProvider>
+        <BannerProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </BannerProvider>
+      </CardProvider>
     </FeatureProvider>
   </AppProvider>
 

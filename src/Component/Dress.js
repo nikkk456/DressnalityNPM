@@ -1,24 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import { FeatureContext } from '../Context/Featuredcontext';
-import FilterSection from './FilterSection';
 import { FormatNumber } from './FormatNUmber'
 
-
-const Kurti = () => {
-    const { filter_products } = useContext(FeatureContext);
-
+const Dress = () => {
+    const {filter_products} = useContext(FeatureContext);
     return (
-        <>
-            <div>
-                <img src="./Image/chikan banner.jpg" alt="banner tha yha pr" style={{ width: "100%" }}></img>
-                <FilterSection />
-
-            </div>
+        <div>
             <div className='container' >
                 <div className='row'>
                     {filter_products.map((animal, i) => (<>
-                        {animal[1].category === "Kurti" ? <div className="col-md-3 col-sm-4 col-6" key={i}>
+                        {animal[1].category == "Dress" ? <div className="col-md-3 col-sm-4 col-6" key={i}>
                             <NavLink to={`/SingleProduct/${animal[1].title}`} key={i} style={{ width: "10%" }} className="mx-3">
                                 <div className="card shadow mb-3 mx-3" style={{ width: "100%" }}>
                                     <div className="card-header bg-transparent border-dark text-center"><img className=" img-fluid " src={animal[1].imageUrl[0]} alt="product" style={{ width: "100%" }} /></div>
@@ -32,13 +24,11 @@ const Kurti = () => {
                             </NavLink>
                         </div> : <></>
                         }
-
-
                     </>))}
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
-export default Kurti
+export default Dress

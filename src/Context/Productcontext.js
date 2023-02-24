@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer, useState } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { get } from 'firebase/database';
 import { ref, child } from 'firebase/database';
 import { db } from '../Firebase';
@@ -28,7 +28,6 @@ const AppProvider = ({ children }) => {
             dispatch({ type: "SET_SINGLE_LOADING" });
             get(child(dbRef, `Products/${id}`)).then((snapshot) => {
                 if (snapshot.exists()) {
-                    console.log(snapshot.val());
                     dispatch({ type: "SET_SINGLE_PRODUCT", payload: snapshot.val() })
 
                 } else {

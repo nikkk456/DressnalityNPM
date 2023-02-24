@@ -1,24 +1,35 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { AppContext, useProductContext } from '../Context/Productcontext'
+import { AppContext } from '../Context/Productcontext'
 import { FormatNumber } from './FormatNUmber'
+import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
+import { Bannercontext } from '../Context/Bannercontext';
 
 const Home = () => {
   const { isLoading, featuredproducts } = useContext(AppContext);
-
+  const {loding, banners} = useContext(Bannercontext);
+  console.log(loding);
   return (
     <div>
       <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img src="./Image/banner1.png" className="d-block w-100" alt="..." />
-          </div>
-          <div className="carousel-item">
+          {
+            loding?<div>...Loading</div>:banners.map((currElem, i) => {
+              return <>
+              <div className="carousel-item active" key={i}>
+                <img src={currElem} className="d-block w-100" alt="..." />
+              </div>
+              </>
+              
+            })
+          }
+
+          {/* <div className="carousel-item">
             <img src="./Image/chikan banner.jpg" className="d-block w-100" alt="..." />
           </div>
           <div className="carousel-item">
             <img src="./Image/dressnality_banner3.png" className="d-block w-100" alt="..." />
-          </div>
+          </div> */}
         </div>
         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
           <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -32,7 +43,7 @@ const Home = () => {
       <section id="category" className='container '>
         <div className='row scroll'>
           <div className='col container'>
-            <Link to="/Top"><img src="./Image/CATEGORY1.png" className='img-fluid' alt="top" /></Link>
+            <Link to="/Tops"><img src="./Image/CATEGORY1.png" className='img-fluid' alt="top" /></Link>
           </div>
           <div className='col'>
             <Link to="/Kurti"><img src="./Image/CATEGORY2.png" className='img-fluid' alt="kurti" /></Link>
@@ -49,8 +60,8 @@ const Home = () => {
       <div id="section">
         <img src='./Image/banner4.jpg' style={{ width: "100%" }} className="img-fluid"></img>
       </div>
-      {isLoading ? <div>..........Loading</div> : <div style={{backgroundColor: "#d5d4d4"}} className="my-3">
-        <div className='container d-flex scroll' style={{alignItems: "center"}}>
+      {isLoading ? <div>..........Loading</div> : <div style={{ backgroundColor: "#d5d4d4" }} className="my-3">
+        <div className='container d-flex scroll' style={{ alignItems: "center" }}>
           {featuredproducts.map((animal, i) => (<>
             <NavLink to={`/SingleProduct/${animal[1].title}`} key={i} style={{ width: "50%" }} className="mx-3">
               <div className="card shadow mb-3 mx-3" style={{ width: "100%" }}>

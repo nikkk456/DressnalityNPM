@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import { useContext } from 'react';
 import { AppContext } from '../Context/Productcontext';
 import { FormatNumber } from './FormatNUmber';
@@ -7,9 +7,9 @@ import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import Crousal from './Crousal';
 import Feature from './Feature';
+import { CardContext } from '../Context/Card_context';
 const SingleProduct = () => {
   const { id } = useParams();
-  // console.log(id);
   const { productdetail, isSingleLoading, getSingleProduct } = useContext(AppContext);
 
   const { category, description, Id, color, imageUrl, title, price, quantity, oldprice, customisable } = productdetail;
@@ -22,14 +22,18 @@ const SingleProduct = () => {
   const setIncrease = () => {
     amount < quantity ? setAmount(amount + 1) : setAmount(quantity);
   };
-  // console.log(isSingleLoading);
+  const {addtocart} = useContext(CardContext);
 
   useEffect(() => {
     getSingleProduct(id);
   }, [])
 
   if (isSingleLoading) {
-    <div>..........Loading</div>
+    <div class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
   }
   return (
 
@@ -66,11 +70,6 @@ const SingleProduct = () => {
                   <FaPlus />
                 </span>
               </div>
-              <div className="col-md-4">
-                <button className="btn2">
-                  Add to Cart
-                </button>
-              </div>
             </div>
             <div className="row my-2">
               <div className="col-md-10">
@@ -86,35 +85,10 @@ const SingleProduct = () => {
 
               <div className="row">
                 <div className="col-md-12 margin">
-                  <a href="/checkout.html"><button className="btn2">Buy Now</button></a>
+                  <NavLink to="/cart" onClick={()=>addtocart(Id, title, productdetail,amount,size,price, )}><button className="btn2">Add to cart</button></NavLink>
                   {customisable ? <a href="Customise.html"><button className="btn2">Customise Now</button></a> : ""}
                 </div>
               </div>
-              <div className="row">
-                <div className="col-md-12 bottom-rule top-10"></div>
-              </div>
-              {/* <ul className="nav nav-tabs">
-                <li className="nav-item">
-                  <a className="nav-link active ">Description</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link">Delivery</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link">Reviews</a>
-                </li>
-              </ul> */}
-              {/* <div className="row my-2">
-                <div className="col-md-10" id="description" style={{ display: 'block' }}>
-                  {description}
-                </div>
-                <div className="col-md-10" id="delivery" style={{ display: "none" }}>
-                  this is in the delivery systemmmm
-                </div>
-                <div className="col-md-10" id="review" style={{ display: "none" }}>
-                  this is in the review systremmmmm
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
