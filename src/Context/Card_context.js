@@ -32,14 +32,13 @@ const CardProvider = ({children})=>{
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const addtocart = (Id, title, productdetail,amount,size,price )=>{
-        dispatch({type:"ADD_TO_CART", payload:{Id, title, productdetail,amount,size,price }});
+    const addtocart = (Id, title, productdetail,amount,size,price, values={chest:"",waist:"", arm:"",neckline:""} )=>{
+        dispatch({type:"ADD_TO_CART", payload:{Id, title, productdetail,amount,size,price, values  }});
     }
 
     const removeItem = (id)=>{
         dispatch({type: "REMOVE_ITEM", payload: id});
     }
-
     const setDecrease = (id) => {
         dispatch({type:"DECREMENT", payload: id});
       };

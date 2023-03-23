@@ -6,11 +6,73 @@ import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 
-const Addtocart = () => {
+
+const Addtocart = ({ stripePromise }) => {
   const { cart, clearCart, total_price, shipping_fee } = useContext(CardContext);
   const { removeItem } = useContext(CardContext);
-  const { setIncrease, setDecrease } = useContext(CardContext);
   console.log(cart);
+  const { setIncrease, setDecrease } = useContext(CardContext);
+
+  const handleCheckout = async (cart) => {
+    try {
+      console.log("Hii i am in the functions");
+      // Create Stripe products dynamically
+      const stripeProducts = [];
+      for (const item of cart) {
+        // Create product
+        const response = await fetch('https://api.stripe.com/v1/products', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Authorization: `Bearer sk_test_51MeMKbSFgSxoeVTn3PTh4nu8ludkKWcpqNrcGlAnKejyN0GGZ0pn4NsRLY0le8pVwvyiJ5fgyI8qkwNfrDsoV3W3009ARmNi35`,
+          },
+          body: new URLSearchParams({
+            name: item.title,
+            description: 'Product Description',
+            metadata: JSON.stringify({
+              quantity: item.amount // Add quantity as metadata
+            })           
+          }),
+        });
+
+        const product = await response.json();
+        const stripe = require('stripe')('sk_test_51MeMKbSFgSxoeVTn3PTh4nu8ludkKWcpqNrcGlAnKejyN0GGZ0pn4NsRLY0le8pVwvyiJ5fgyI8qkwNfrDsoV3W3009ARmNi35');
+        // const quantity = parseInt(product.metadata.quantity);
+        // Create price for product
+        const price = await stripe.prices.create({
+          product: product.id,
+          unit_amount: item.price * 100, // Price is in cents
+          currency: 'inr',
+          metadata: {
+            quantity: item.amount // Add quantity as metadata
+          }
+        });
+
+        // Push price ID to stripeProducts array
+        stripeProducts.push(price.id);
+      }
+      const stripe = await stripePromise;
+      console.log(stripeProducts);
+      // Send price IDs to server-side code
+      const response = await fetch('http://localhost:4242/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ stripeProducts }),
+      });
+
+      const session = await response.json();
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
 
 
 
@@ -50,13 +112,17 @@ const Addtocart = () => {
               return <>
 
                 <div className='row' key={i}>
-                    <div className='col-md-3 text-center d-flex'>
-                      <div className='col-md-5' style={{ width: "30%", marginRight: "3%" }}><img src={currElem.image} style={{ width: "90%", borderRadius: "30px", border: "2px solid black" }}></img></div>
-                      <div className='col-md-7 d-flex' style={{ flexDirection: "column", justifyContent: "center" }}>
-                        <p style={{ marginBottom: "0%" }}>{currElem.title}</p>
-                        <p style={{ marginBottom: "0%" }}>Size: {currElem.size}</p>
-                      </div>
+                  <div className='col-md-3 text-center d-flex'>
+                    <div className='col-md-5' style={{ width: "30%", marginRight: "3%" }}><img src={currElem.image} style={{ width: "90%", borderRadius: "30px", border: "2px solid black" }}></img></div>
+                    <div className='col-md-7 d-flex' style={{ flexDirection: "column", justifyContent: "center" }}>
+                      <p style={{ marginBottom: "0%" }}><b>{currElem.title}</b></p>
+                      {currElem.size ? <small style={{ marginBottom: "0%" }}>Size: {currElem.size}</small> : ""}
+                      {currElem.neckline ? <small style={{ marginBottom: "0%" }}>neckline: {currElem.neckline}</small> : ""}
+                      {currElem.chest ? <small style={{ marginBottom: "0%" }}>chest: {currElem.chest}</small> : ""}
+                      {currElem.arm ? <small style={{ marginBottom: "0%" }}>arm: {currElem.arm}</small> : ""}
+                      {currElem.waist ? <small style={{ marginBottom: "0%" }}>arm: {currElem.waist}</small> : ""}
                     </div>
+                  </div>
                   <div className='col-md-2 text-center d-flex' style={{ flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                     <p><FormatNumber price={currElem.price} /></p>
                   </div>
@@ -96,32 +162,32 @@ const Addtocart = () => {
           </div>
           <div className='col-3 my-3' style={{ background: "#d9d9d9", borderRadius: "18px" }}>
             <div className='row'>
-              <div className='col-md-6' style={{marginTop:"2%"}}>
-                <p  style={{marginBottom:"0%"}}><b>SUBTOTAL</b>: </p>
+              <div className='col-md-6' style={{ marginTop: "2%" }}>
+                <p style={{ marginBottom: "0%" }}><b>SUBTOTAL</b>: </p>
               </div>
-              <div className='col-md-6'style={{marginTop:"2%"}}>
-                <p style={{marginBottom:"0%"}}><FormatNumber price={total_price} /></p>
+              <div className='col-md-6' style={{ marginTop: "2%" }}>
+                <p style={{ marginBottom: "0%" }}><FormatNumber price={total_price} /></p>
               </div>
             </div>
             <div className='row'>
-              <div className='col-md-6' style={{marginTop:"2%"}}>
-                <p style={{marginBottom:"0%"}}><b>SHIPPING CAHRGES</b>: </p>
+              <div className='col-md-6' style={{ marginTop: "2%" }}>
+                <p style={{ marginBottom: "0%" }}><b>SHIPPING CAHRGES</b>: </p>
               </div>
-              <div className='col-md-6' style={{marginTop:"2%"}}>
-                <p style={{marginBottom:"0%"}}><FormatNumber price={shipping_fee} /></p>
+              <div className='col-md-6' style={{ marginTop: "2%" }}>
+                <p style={{ marginBottom: "0%" }}><FormatNumber price={shipping_fee} /></p>
               </div>
             </div>
             <hr />
             <div className='row'>
-              <div className='col-md-6' style={{marginTop:"2%"}}>
+              <div className='col-md-6' style={{ marginTop: "2%" }}>
                 <p><b>ORDER TOTAL</b>: </p>
               </div>
-              <div className='col-md-6' style={{marginTop:"2%"}}>
+              <div className='col-md-6' style={{ marginTop: "2%" }}>
                 <p><FormatNumber price={shipping_fee + total_price} /></p>
               </div>
             </div>
             <div className='row'>
-            <NavLink to="/BuyNow"><button className="btn2">Buy Now</button></NavLink>
+              <button className="btn2" onClick={() => handleCheckout(cart)}>Buy Now</button>
             </div>
           </div>
         </div>

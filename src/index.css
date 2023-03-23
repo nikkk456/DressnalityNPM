@@ -9,7 +9,14 @@ body {
 .container::-webkit-scrollbar{
   display: none;
 }
-
+.border-n{
+  border: 2px solid rgb(13, 13, 112);
+  border-radius: 30px;
+}
+.border-m{
+  border: none;
+  border-radius: 30px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

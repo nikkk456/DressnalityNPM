@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink, useParams } from 'react-router-dom'
+import { Link, NavLink, useParams } from 'react-router-dom'
 import { useContext } from 'react';
 import { AppContext } from '../Context/Productcontext';
 import { FormatNumber } from './FormatNUmber';
@@ -15,7 +15,6 @@ const SingleProduct = () => {
   const { category, description, Id, color, imageUrl, title, price, quantity, oldprice, customisable } = productdetail;
   const [size, setSize] = useState("XL");
   const [amount, setAmount] = useState(1);
-
   const setDecrease = () => {
     amount > 1 ? setAmount(amount - 1) : setAmount(1);
   };
@@ -86,7 +85,7 @@ const SingleProduct = () => {
               <div className="row">
                 <div className="col-md-12 margin">
                   <NavLink to="/cart" onClick={()=>addtocart(Id, title, productdetail,amount,size,price, )}><button className="btn2">Add to cart</button></NavLink>
-                  {customisable ? <a href="Customise.html"><button className="btn2">Customise Now</button></a> : ""}
+                  {customisable ? <Link to={`/SingleProduct/${id}/Customise`}><button className="btn2">Customise Now</button></Link> : ""}
                 </div>
               </div>
             </div>

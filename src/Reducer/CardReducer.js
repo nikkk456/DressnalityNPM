@@ -2,7 +2,7 @@
 const CardReducer = (state, action) => {
 
     if (action.type ==="ADD_TO_CART") {
-        let {Id, title, productdetail,amount,size,price } = action.payload;
+        let {Id, title, productdetail,amount,size,price, values } = action.payload;
 
         let existingProduct = state.cart.find((currElem, i) => currElem.id === Id+size );
         if(existingProduct){
@@ -36,7 +36,10 @@ const CardReducer = (state, action) => {
                 size:size,
                 price: price,
                 quantity: productdetail.quantity,
-    
+                chest: values.chest,
+                waist: values.waist,
+                arm: values.arm,
+                neckline: values.neckline,
             }
             return{
                 ...state,

@@ -1,6 +1,7 @@
 {
   "projects": {
-    "cloudstorage": "dressnality"
+    "cloudstorage": "dressnality",
+    "default": "dressnality"
   },
   "targets": {},
   "etags": {}

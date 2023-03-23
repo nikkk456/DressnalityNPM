@@ -18,5 +18,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const storage = getStorage();
 const db = getDatabase(app);
+// const functions = getFunctions();
+// const createStripeChcekout = firebase.functions().httpsCallable('createStripeChcekout');
 
 export {app,auth,storage,db};

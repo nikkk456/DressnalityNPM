@@ -43,16 +43,16 @@ const Home = () => {
       <section id="category" className='container '>
         <div className='row scroll'>
           <div className='col container'>
-            <Link to="/Tops"><img src="./Image/CATEGORY1.png" className='img-fluid' alt="top" /></Link>
+            <Link to="/Kurti"><img src="./Image/CATEGORY1.png" className='img-fluid' alt="top" /></Link>
           </div>
           <div className='col'>
-            <Link to="/Kurti"><img src="./Image/CATEGORY2.png" className='img-fluid' alt="kurti" /></Link>
+            <Link to="/Tshirt"><img src="./Image/CATEGORY2.png" className='img-fluid' alt="kurti" /></Link>
           </div>
           <div className='col'>
-            <Link to="/Dress"><img src="./Image/CATEGORY3.png" className='img-fluid' alt="dress" /></Link>
+            <Link to="/Tops"><img src="./Image/CATEGORY3.png" className='img-fluid' alt="dress" /></Link>
           </div>
           <div className='col'>
-            <Link to="/Tshirt"><img src="./Image/CATEGORY4.png" className='img-fluid' alt="tshirt" /></Link>
+            <Link to="/Dress"><img src="./Image/CATEGORY4.png" className='img-fluid' alt="tshirt" /></Link>
           </div>
         </div>
 
@@ -114,7 +114,7 @@ const Home = () => {
         </div>
       </div>
       <div id="button">
-        <NavLink to="/"><button className="btn2">Craft Now</button></NavLink>
+        <NavLink to="/Products"><button className="btn2">Craft Now</button></NavLink>
         <NavLink to="/Blog3"><button className="btn2">Read More</button></NavLink>
       </div>
     </div>
